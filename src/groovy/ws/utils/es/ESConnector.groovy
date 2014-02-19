@@ -17,8 +17,9 @@ class ESConnector {
     static def connect(){
         Settings settings = ImmutableSettings.settingsBuilder()
                 .put("cluster.name", essettings.clusterName).build();
-        TransportClient client = new TransportClient(settings);
+        client = new TransportClient(settings);
             client.addTransportAddress(new InetSocketTransportAddress(essettings.hostName,essettings.tcpPort));
+        println "connection to::"+essettings.hostName+":"+essettings.tcpPort+"----------------"
         return client;
     }
     static {
