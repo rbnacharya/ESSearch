@@ -1,0 +1,8 @@
+---
+cluster_name : esnew
+host_name : localhost
+http_port : 9200
+tcp_port : 9300
+index_name_default : cl1
+type_name_search : Search
+type_name_crawler : Crawler

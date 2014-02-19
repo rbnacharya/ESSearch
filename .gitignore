@@ -1,0 +1,29 @@
+_Store
+*.db
+*.log
+*.iml
+*.class
+
+*.class
+
+# IDE support files
+.classpath
+.launch
+.project
+*.launch
+*.tmproj
+ivy*
+eclipse
+*.iml
+*.ipr
+*.iws
+.idea/
+.settings/
+
+# default HSQL database files for production mode
+prodDb.*
+
+# general HSQL database files
+*Db.properties
+*Db.script
+
