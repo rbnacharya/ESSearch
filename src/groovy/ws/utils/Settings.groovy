@@ -27,9 +27,10 @@ class Settings {
     public Set<String> keys(){
         return settingMap.keySet()
     }
-    public static void buildSettings(def settingFile){
+    public static void buildSettings(String settingFile){
         Yaml yaml=new Yaml()
-        Map smap=(Map)yaml.load(settingFile)
+        InputStream is=new FileInputStream(settingFile)
+        Map smap=(Map)yaml.load(is)
         settings=new Settings(smap)
     }
 }

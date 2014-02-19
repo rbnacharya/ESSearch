@@ -46,8 +46,8 @@ public  class SettingsES{
         return httpPort
     }
 
-    String getTcpPort() {
-        return tcpPort
+    Integer getTcpPort() {
+        return Integer.parseInt(tcpPort)
     }
 
     String getDefaultIndex() {
