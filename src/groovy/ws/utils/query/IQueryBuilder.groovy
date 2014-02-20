@@ -2,12 +2,13 @@ package ws.utils.query
 
 import org.elasticsearch.action.search.SearchRequestBuilder
 import org.elasticsearch.client.Client
-import org.elasticsearch.index.query.QueryBuilder
+import ws.utils.request.SearchRequest
+import ws.utils.support.SearchUtil
 
 /**
  * Created By: racharya
  * Date: 2/19/14 : 1:51 PM
  */
- interface IQueryBuilder {
-    public SearchRequestBuilder getQuery(Client cl,Map<String,Object> param);
+public abstract class IQueryBuilder extends SearchUtil{
+    public abstract SearchRequestBuilder getQuery(Client cl,SearchRequest param);
 }

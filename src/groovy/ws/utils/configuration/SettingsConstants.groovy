@@ -1,4 +1,4 @@
-package ws.utils
+package ws.utils.configuration
 
 /**
  * Created By: racharya
@@ -12,4 +12,7 @@ class SettingsConstants {
     static def DEFAULT_INDEX="index_name_default"
     static def TYPE_SEARCH="type_name_search"
     static def TYPE_CRAWLER="type_name_crawler"
+
+
+    static def CONFIG_FILE="config/settings.yml"
 }

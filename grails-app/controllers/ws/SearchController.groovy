@@ -2,31 +2,40 @@ package ws
 
 import grails.converters.JSON
 import org.codehaus.groovy.grails.web.json.JSONObject
+import ws.utils.request.RequestConstants
+import ws.utils.request.SearchRequest
 
 class SearchController {
     def query=""
     def searchService
+    SearchRequest searchReq
+
     def index() {render init()?:new JSONObject() as JSON}
     def init(){
         format()
-        return searchService.search(query)
+        if (params.containsKey(RequestConstants.QUERY)){
+            query=params.get(RequestConstants.QUERY)
+        }
+        return searchService.search(searchReq)
     }
     def format(){
-        params.remove("controller")
-        params.remove("action")
-        if (params.containsKey("query")){
-            query=params.get("query")
+        setReportName()
+        params.remove(RequestConstants.CONTROLLER_)
+        params.remove(RequestConstants.ACTION_)
+        setParams()
+    }
+
+    private void setReportName() {
+        if (!params.containsKey(RequestConstants.REPORT_NAME)) {
+            def reportName = actionName;
+            if (actionName == "index") {
+                reportName = "search"
+            }
+            params.put(RequestConstants.REPORT_NAME, reportName)
         }
     }
-    def count(){
-       format()
-       if (params.containsKey("link"))
-       {
-           render searchService.count(getParams())?:new JSONObject() as JSON
-       }else{
 
-           render "error"
-       }
-
+    private void setParams() {
+        searchReq = new SearchRequest(parameters: getParams() ?: new HashMap<String, String>())
     }
 }

@@ -3,6 +3,7 @@ package ws.utils.query
 import org.elasticsearch.index.query.MatchQueryBuilder
 import org.elasticsearch.index.query.QueryBuilder
 import org.elasticsearch.index.query.QueryBuilders
+import ws.utils.mapping.SearchESType
 
 /**
  * Created By: racharya
@@ -10,13 +11,14 @@ import org.elasticsearch.index.query.QueryBuilders
  */
 public class QueryUtil {
     static def getSearchQuery(String queryString){
-        float boost1=0.50
-        float boost2=0.01
+        float boost1=3
+        float boost2=1
         QueryBuilder searchQuery=
             QueryBuilders.multiMatchQuery(queryString)
                 .operator(MatchQueryBuilder.Operator.AND)
-                .field("title",boost1)
-                .field("body",boost2)
+                .field(SearchESType.TITLE,boost1)
+                .field(SearchESType.BODY,boost2)
         return searchQuery;
     }
+
 }

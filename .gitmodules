@@ -1,0 +1,3 @@
+[submodule "Crawler"]
+	path = Crawler
+	url = https://github.com/rbnacharya/PyCrawler.git

@@ -1,4 +1,4 @@
-package ws.utils
+package ws.utils.configuration
 
 import org.yaml.snakeyaml.Yaml
 
@@ -6,15 +6,17 @@ import org.yaml.snakeyaml.Yaml
  * Created By: racharya
  * Date: 2/18/14 : 5:22 PM
  */
-class Settings {
+class ESSettings {
     Map<String,String> settingMap=Collections.emptyMap();
-    static Settings settings;
-    public static Settings getInstance(def settingFile) {
-        if (settings==null)
-            buildSettings(settingFile)
-        return settings
+
+    ESSettings() {
     }
-    Settings(Map<String, String> settingMap) {
+
+    ESSettings(Map<String, String> settingMap) {
+        setSettingMap(settingMap)
+    }
+
+    void setSettingMap(Map<String, String> settingMap) {
         this.settingMap = settingMap
     }
 
@@ -27,10 +29,10 @@ class Settings {
     public Set<String> keys(){
         return settingMap.keySet()
     }
-    public static void buildSettings(String settingFile){
+    public void parse(String settingFile){
         Yaml yaml=new Yaml()
         InputStream is=new FileInputStream(settingFile)
         Map smap=(Map)yaml.load(is)
-        settings=new Settings(smap)
+        setSettingMap(smap)
     }
 }

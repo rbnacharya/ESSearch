@@ -1,11 +1,11 @@
-package ws.utils.es
+package ws.utils.esresources
 
 import org.elasticsearch.client.Client
 import org.elasticsearch.client.transport.TransportClient
 import org.elasticsearch.common.settings.ImmutableSettings
 import org.elasticsearch.common.settings.Settings
 import org.elasticsearch.common.transport.InetSocketTransportAddress
-import ws.utils.SettingsES
+import ws.utils.configuration.ClusterSettings
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,10 +13,10 @@ import ws.utils.SettingsES
  */
 class ESConnector {
     static Client client;
-    static SettingsES essettings=SettingsES.instance;
+    static ClusterSettings essettings=ClusterSettings.instance;
     static def connect(){
         Settings settings = ImmutableSettings.settingsBuilder()
-                .put("cluster.name", essettings.clusterName).build();
+                .put(ESConstants.CLUSTER_NAME_STR, essettings.clusterName).build();
         client = new TransportClient(settings);
             client.addTransportAddress(new InetSocketTransportAddress(essettings.hostName,essettings.tcpPort));
         println "connection to::"+essettings.hostName+":"+essettings.tcpPort+"----------------"

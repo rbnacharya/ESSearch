@@ -1,11 +1,11 @@
-package ws.utils
+package ws.utils.configuration
 
 /**
  * Created By: racharya
  * Date: 2/18/14 : 5:42 PM
  */
-public  class SettingsES{
-    static String settingsFile="config/settings.yml"
+public  class ClusterSettings extends ESSettings{
+    static String settingsFile=SettingsConstants.CONFIG_FILE
     String clusterName;
     String hostName;
     String httpPort;
@@ -13,26 +13,26 @@ public  class SettingsES{
     String defaultIndex;
     String typeSearch;
     String typeCrawler;
-    Settings settings1;
-    static SettingsES sett;
+    static ClusterSettings sett;
 
-    public static SettingsES getInstance() {
+    public static ClusterSettings getInstance() {
         if (sett==null)
-            sett=new SettingsES()
+            sett=new ClusterSettings()
         return sett;
     }
-    SettingsES() {
-        this.settings1 = Settings.getInstance(settingsFile)
+
+    ClusterSettings() {
+        parse(settingsFile)
         init()
     }
     def init(){
-        clusterName=settings1.get(SettingsConstants.CLUSTER_NAME)
-        hostName=settings1.get(SettingsConstants.HOST_NAME)
-        httpPort=settings1.get(SettingsConstants.HTTP_PORT)
-        tcpPort=settings1.get(SettingsConstants.TCP_PORT)
-        defaultIndex=settings1.get(SettingsConstants.DEFAULT_INDEX)
-        typeSearch=settings1.get(SettingsConstants.TYPE_SEARCH)
-        typeCrawler=settings1.get(SettingsConstants.TYPE_CRAWLER)
+        clusterName=get(SettingsConstants.CLUSTER_NAME)
+        hostName=get(SettingsConstants.HOST_NAME)
+        httpPort=get(SettingsConstants.HTTP_PORT)
+        tcpPort=get(SettingsConstants.TCP_PORT)
+        defaultIndex=get(SettingsConstants.DEFAULT_INDEX)
+        typeSearch=get(SettingsConstants.TYPE_SEARCH)
+        typeCrawler=get(SettingsConstants.TYPE_CRAWLER)
     }
     String getClusterName() {
         return clusterName
