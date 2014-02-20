@@ -13,10 +13,10 @@ class RequestUtil {
         return 0
     }
     public static Integer getSize(SearchRequest req){
-        return 0
+        return 100
     }
     public static String getQuery(SearchRequest req){
-        return null
+        return req.get(RequestConstants.QUERY)
     }
 
 

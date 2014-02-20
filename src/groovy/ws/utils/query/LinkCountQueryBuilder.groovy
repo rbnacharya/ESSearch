@@ -26,7 +26,7 @@ public class LinkCountQueryBuilder extends IQueryBuilder {
         QueryBuilder query= QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),filter)
         srb.setQuery(query)
         .addSort(SortBuilders.fieldSort(CrawlerType.ADDED_ON).order(SortOrder.DESC)).setSize(1)
-        .addFields(CrawlerType.FIELDSTOFETCH)
+        .addFields(new CrawlerType().getFIELDSTOFETCH())
         return srb
     }
     public Set<String> getLinks(SearchRequest param){

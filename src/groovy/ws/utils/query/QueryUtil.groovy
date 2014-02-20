@@ -9,7 +9,7 @@ import ws.utils.mapping.SearchESType
  * Created By: racharya
  * Date: 2/19/14 : 9:50 AM
  */
-public class QueryUtil {
+ class QueryUtil {
     static def getSearchQuery(String queryString){
         float boost1=3
         float boost2=1

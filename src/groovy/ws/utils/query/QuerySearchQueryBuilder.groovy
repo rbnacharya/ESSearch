@@ -19,9 +19,11 @@ class QuerySearchQueryBuilder extends IQueryBuilder{
     SearchRequestBuilder getQuery(Client cl,SearchRequest param) {
         QueryBuilder query= QueryUtil.getSearchQuery(RequestUtil.getQuery(param))
         SearchRequestBuilder srb=prepareSearch(cl,param)
-                .addSort(SortBuilders.fieldSort(CrawlerType.ADDED_ON).order(SortOrder.DESC))
+                .setTypes(SearchESType.NAME)
+                .addSort(SortBuilders.fieldSort(SearchESType.ADDED_ON).order(SortOrder.DESC))
                 .setSize(RequestUtil.getSize(param))
-                .addFields(SearchESType.FIELDSTOFETCH)
+                .setQuery(query)
+                .addFields(new SearchESType().getFIELDSTOFETCH())
         return srb
     }
 }

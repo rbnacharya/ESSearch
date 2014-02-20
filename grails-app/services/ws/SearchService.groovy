@@ -34,9 +34,6 @@ class SearchService {
         ActionRequestBuilder builder = iqb.getQuery(getClient(), request)
         def executor = new Executor(builder, listener)
         executor.run()
-        while (!executor.isComplete.get()) {
-            Thread.sleep(100)
-        }
         return executor.getResponse()
     }
 

@@ -10,6 +10,7 @@ class SearchESType extends AbstractType{
     public static final String TITLE="title"
     public static final String BODY="body"
     public static final String EXCERPT="excerpt"
+    public static final String ADDED_ON="addedOn"
 
 
     @Override

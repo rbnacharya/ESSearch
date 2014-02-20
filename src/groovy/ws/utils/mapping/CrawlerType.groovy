@@ -7,7 +7,7 @@ package ws.utils.mapping
 class CrawlerType extends AbstractType {
     public static final String NAME="Crawler"
     public static final String LINK="link"
-    public static final String ADDED_ON="AddedOn"
+    public static final String ADDED_ON="addedOn"
     public static final String SEARCHON=LINK+".raw"
 
     @Override

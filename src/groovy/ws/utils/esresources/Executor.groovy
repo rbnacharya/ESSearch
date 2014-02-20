@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  * Zadcor created this package on
  * 2/19/14, copyright is reserved with zadcor
  */
-class Executor implements Runnable {
+class Executor {
     ActionRequestBuilder req;
     ActionListener res;
     AtomicBoolean isComplete;
@@ -22,16 +22,10 @@ class Executor implements Runnable {
         isComplete=new AtomicBoolean(false)
     }
 
-    @Override
     void run() {
-        try{
             ActionResponse res=this.req.execute().actionGet()
             this.res.onResponse(res)
             isComplete.set(true)
-        }
-        catch (Exception e){
-            isComplete.set(true)
-        }
     }
     public String getResponse(){
         return ((IQueryResponse)res).getResponse()

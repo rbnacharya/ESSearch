@@ -42,7 +42,7 @@ import ws.utils.mapping.AbstractType
      }
      def init(SearchResponse response){
          outputJSON=new JSONObject()
-         outputJSON.put(ResponseConstants.TIME_TAKEN,response.getTook().seconds())
+         outputJSON.put(ResponseConstants.TIME_TAKEN,response.getTook().millis())
          outputJSON.put(ResponseConstants.TOTAL_HITS,response.getHits().totalHits())
      }
 
